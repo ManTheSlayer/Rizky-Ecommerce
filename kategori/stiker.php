@@ -95,11 +95,16 @@ if (isset($_POST['shopping-cart'])) {
         <div class="navbar-nav">
             <a href="../index.php">Beranda</a>
             <div class="dropdown">
-                <a href="#">Kategori</a>
+                <a href="Katalog.php">Kategori</a>
                 <div class="dropdown-menu">
                     <a href="banner.php">Banner</a>
-                    <a href="#">Print Stiker</a>
+                    <a href="stiker.php">Print Stiker</a>
                     <a href="kartunama.php">Kartu Nama</a>
+                    <a href="printa3+.php">Print A3+</a>
+                    <a href="idcard.php">ID Card</a>
+                    <a href="plakat.php">Plakat</a>
+                    <a href="pinmug.php">Pinmug</a>
+                    <a href="stempel.php">Stempel</a>
                 </div>
             </div>
             <a href="../tentang-kami.php">Tentang Kami</a>
@@ -132,7 +137,7 @@ if (isset($_POST['shopping-cart'])) {
     <!-- isi case -->
     <section class="produk">
         <div class="container">
-            <h1>PRODUK</h1>
+            <h1>P R I N T - S T I K E R</h1>
             <h1>Stiker Vinyl - Stiker Hologram - Stiker Kertas</h1>
         </div>
         <div class="title">
@@ -153,7 +158,7 @@ if (isset($_POST['shopping-cart'])) {
                         <?= number_format($row['harga']) ?>
                     </p>
                     <form class="add-to-cart-form" method="post" action="">
-                        <a href="../detail/stiker-detail.php?id=<?= $row['id'] ?>" id="detail"><i
+                        <a href="../detail/detail-produk.php?id=<?= $row['id'] ?>" id="detail"><i
                                 data-feather="eye"></i></a>
                         <input type="hidden" name="id_produk" value="<?= $row['id'] ?>">
                         <input type="hidden" name="kategori" value="<?= $row['kategori'] ?>">

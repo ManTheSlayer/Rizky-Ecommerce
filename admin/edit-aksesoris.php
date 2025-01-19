@@ -76,14 +76,14 @@ if (isset($_POST["submit"])) {
         echo "
             <script>
                 alert('Data berhasil diubah!');
-                document.location.href = 'index.php?type=produk';
+                document.location.href = 'index.php?type=produk&category=kartu-nama';
             </script>
         ";
     } else {
         echo "
             <script>
                 alert('Data gagal diubah!');
-                document.location.href = 'index.php?type=produk';
+                document.location.href = 'index.php?type=produk&category=kartu-nama';
             </script>
         ";
     }
@@ -92,78 +92,91 @@ if (isset($_POST["submit"])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Charger</title>
+    <title>Edit Kartu Nama</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
+        rel="stylesheet">
 
     <!-- css -->
     <link rel="stylesheet" href="admin.css">
 </head>
+
 <body>
 
-<!-- Tambah Charger -->
-<section class="tambah-charger-section">
-    <div class="tambah-charger">
-        <div class="box" style="width: 60rem;">
-            <div class="form-box">
-                <h2>Edit Aksesoris</h2>
-                <form action="" method="post" enctype="multipart/form-data">
-                    <div class="item-form" style="display: flex; flex-wrap: wrap; gap: 1rem;">
-                    <input type="hidden" name="id" value="<?php echo $aksesoris['id']; ?>">
-                    <input type="hidden" name="gambarLama" value="<?php echo $aksesoris['gambar']; ?>">
-                    <div class="form-input">
-                        <label for="nama">Nama Produk</label>
-                        <input type="text" name="nama" id="nama" value="<?php echo $aksesoris['nama']; ?>" required>
-                    </div>
-                    <div class="form-input">
-                        <label for="harga">Harga</label>
-                        <input type="text" id="harga" name="harga" value="<?php echo $aksesoris['harga']; ?>" required>
-                    </div>
-                    <div class="form-input">
-                        <label for="stok">Stok</label>
-                        <input type="text" name="stok" id="stok" value="<?php echo $aksesoris['stok']; ?>" required>
-                    </div>
-                    <div class="form-input">
-                        <label for="bahan">Bahan</label>
-                        <input type="text" name="bahan" id="bahan" value="<?php echo $aksesoris['bahan']; ?>" required>
-                    </div>
-                    <div class="form-input">
-                        <label for="berat">Berat</label>
-                        <input type="text" name="berat" id="berat" value="<?php echo $aksesoris['berat']; ?>" required>
-                    </div>
-                    <div class="form-input">
-                        <label for="model">Model</label>
-                        <input type="text" name="model" id="model" value="<?php echo $aksesoris['model']; ?>" required>
-                    </div>
-                    <div class="form-input">
-                        <label for="stok">Deskripsi</label>
-                        <textarea type="text" name="deskripsi" id="deskripsi" style="width: 24rem; height: 4rem; border: 1px solid #ccc;" required ><?php echo $aksesoris['deskripsi']; ?></textarea>
-                    </div>
-                    <div class="form-input">
-                        <label for="gambar">Gambar</label>
-                        <input type="file" name="gambar" id="gambar" accept=".jpg, .jpeg, .png">
-                        <?php if (!empty($aksesoris['gambar'])): ?>
-                            <img src="asset/img/produk/<?php echo $aksesoris['gambar']; ?>" width="100">
-                        <?php endif; ?>
-                    </div>
-                    </div>
-                    <div class="button-submit">
-                        <input type="submit" class="btn-tambah" name="submit" value="Simpan">
-                        <a href="index.php?type=produk" class="btn-kembali"><button type="button" class="btn-kembali-isi">Kembali</button></a>
-                    </div>
-                </form>
+    <!-- Tambah Charger -->
+    <section class="tambah-charger-section">
+        <div class="tambah-charger">
+            <div class="box" style="width: 60rem;">
+                <div class="form-box">
+                    <h2>Edit Kartu Nama</h2>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="item-form" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                            <input type="hidden" name="id" value="<?php echo $aksesoris['id']; ?>">
+                            <input type="hidden" name="gambarLama" value="<?php echo $aksesoris['gambar']; ?>">
+                            <div class="form-input">
+                                <label for="nama">Nama Produk</label>
+                                <input type="text" name="nama" id="nama" value="<?php echo $aksesoris['nama']; ?>"
+                                    required>
+                            </div>
+                            <div class="form-input">
+                                <label for="harga">Harga</label>
+                                <input type="text" id="harga" name="harga" value="<?php echo $aksesoris['harga']; ?>"
+                                    required>
+                            </div>
+                            <div class="form-input">
+                                <label for="stok">Stok</label>
+                                <input type="text" name="stok" id="stok" value="<?php echo $aksesoris['stok']; ?>"
+                                    required>
+                            </div>
+                            <div class="form-input">
+                                <label for="bahan">Bahan</label>
+                                <input type="text" name="bahan" id="bahan" value="<?php echo $aksesoris['bahan']; ?>"
+                                    required>
+                            </div>
+                            <div class="form-input">
+                                <label for="berat">Berat</label>
+                                <input type="text" name="berat" id="berat" value="<?php echo $aksesoris['berat']; ?>"
+                                    required>
+                            </div>
+                            <div class="form-input">
+                                <label for="model">Model</label>
+                                <input type="text" name="model" id="model" value="<?php echo $aksesoris['model']; ?>"
+                                    required>
+                            </div>
+                            <div class="form-input">
+                                <label for="stok">Deskripsi</label>
+                                <textarea type="text" name="deskripsi" id="deskripsi"
+                                    style="width: 24rem; height: 4rem; border: 1px solid #ccc;"
+                                    required><?php echo $aksesoris['deskripsi']; ?></textarea>
+                            </div>
+                            <div class="form-input">
+                                <label for="gambar">Gambar</label>
+                                <input type="file" name="gambar" id="gambar" accept=".jpg, .jpeg, .png">
+                                <?php if (!empty($aksesoris['gambar'])): ?>
+                                    <img src="asset/img/produk/<?php echo $aksesoris['gambar']; ?>" width="100">
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="button-submit">
+                            <input type="submit" class="btn-tambah" name="submit" value="Simpan">
+                            <a href="index.php?type=produk&category=kartu-nama" class="btn-kembali"><button
+                                    type="button" class="btn-kembali-isi">Kembali</button></a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- javaScript -->
-<script src="admin.js"></script>
+    <!-- javaScript -->
+    <script src="admin.js"></script>
 </body>
+
 </html>

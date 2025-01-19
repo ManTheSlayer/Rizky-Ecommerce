@@ -27,7 +27,7 @@ if (isset($_SESSION['id_user'])) {
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GadgetAR</title>
+  <title>Tentang Kami</title>
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -53,11 +53,17 @@ if (isset($_SESSION['id_user'])) {
     <div class="navbar-nav">
       <a href="index.php">Beranda</a>
       <div class="dropdown">
-        <a href="#" class="kategori-nav">Kategori</a>
+        <a href="kategori/katalog.php" class="kategori-nav">Kategori</a>
         <div class="dropdown-menu">
           <a href="kategori/banner.php">Banner</a>
           <a href="kategori/stiker.php">Print Stiker</a>
           <a href="kategori/kartunama.php">Kartu Nama</a>
+          <a href="kategori/printa3+.php">Print A3+</a>
+          <a href="kategori/idcard.php">ID Card</a>
+          <a href="kategori/plakat.php">Plakat</a>
+          <a href="kategori/pinmug.php">pinmug</a>
+          <a href="kategori/stempel.php">Stempel</a>
+
         </div>
       </div>
       <a href="tentang-kami.php">Tentang Kami</a>
@@ -155,9 +161,9 @@ if (isset($_SESSION['id_user'])) {
         <div class="jelajah">
           <h4>Jelajahi Kami</h4>
           <div class="tentang">
-            <a href="kategori/case.php"><i data-feather="chevron-right" width="16" height="16"></i> Soft Case</a>
-            <a href="kategori/charger.php"><i data-feather="chevron-right" width="16" height="16"></i> Charger</a>
-            <a href="kategori/aksesoris.php"><i data-feather="chevron-right" width="16" height="16"></i> Aksesoris</a>
+            <a href="kategori/banner.php"><i data-feather="chevron-right" width="16" height="16"></i> Banner</a>
+            <a href="kategori/stiker.php"><i data-feather="chevron-right" width="16" height="16"></i> Print Stiker</a>
+            <a href="kategori/kartunama.php"><i data-feather="chevron-right" width="16" height="16"></i> Kartu Nama</a>
             <a href="tentang-kami.php"><i data-feather="chevron-right" width="16" height="16"></i> Tentang Kami</a>
           </div>
         </div>
@@ -176,7 +182,7 @@ if (isset($_SESSION['id_user'])) {
       </div>
     </div>
     <div class="credit">
-      <p><a href="">Gadget<span>AR</span></a> | &copy; 2024.</p>
+      <p><a href="">Lurida<span>Innovations</span></a> | &copy; 2024.</p>
     </div>
   </footer>
 

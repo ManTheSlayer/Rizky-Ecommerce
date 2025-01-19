@@ -42,7 +42,7 @@ if (isset($_POST['shopping-cart'])) {
   $result = mysqli_stmt_get_result($select_cart);
 
   if (mysqli_num_rows($result) > 0) {
-    echo "<script>alert('Produk sudah ada di keranjang!'); window.location.href = '../detail/banner-detail.php?id=" . $_GET['id'] . "';</script>";
+    echo "<script>alert('Produk sudah ada di keranjang!'); window.location.href = '../detail/detail-produk.php?id=" . $_GET['id'] . "';</script>";
   } else {
     $insert_cart = mysqli_prepare($con, "INSERT INTO keranjang (id_user, id_produk, nama, kategori, harga, gambar, kuantitas, berat) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     mysqli_stmt_bind_param($insert_cart, "iissisii", $id_user, $product_id_case, $product_name, $product_kategori, $product_price, $product_image, $product_quantity, $product_berat);
@@ -50,7 +50,7 @@ if (isset($_POST['shopping-cart'])) {
     if (mysqli_stmt_affected_rows($insert_cart) > 0) {
       echo "<script>alert('Produk ditambahkan ke keranjang!'); window.location.href = '../keranjang.php';</script>";
     } else {
-      echo "<script>alert('Gagal menambahkan produk ke keranjang!'); window.location.href = '../detail/aksesoris-detail.php?id=" . $_GET['id'] . "';</script>";
+      echo "<script>alert('Gagal menambahkan produk ke keranjang!'); window.location.href = '../detail/detail-produk.php?id=" . $_GET['id'] . "';</script>";
     }
   }
 
@@ -68,7 +68,7 @@ if (isset($_POST['shopping-cart'])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Banner Detail</title>
+  <title>Detail Produk</title>
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,6 +76,9 @@ if (isset($_POST['shopping-cart'])) {
     rel="stylesheet">
   <!-- Feather Icons -->
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <!-- SweetAlert2 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
   <!-- css -->
   <style>
@@ -90,11 +93,16 @@ if (isset($_POST['shopping-cart'])) {
     <div class="navbar-nav">
       <a href="../index.php">Beranda</a>
       <div class="dropdown">
-        <a href="#">Kategori</a>
+        <a href="../kategori/katalog.php">Kategori</a>
         <div class="dropdown-menu">
           <a href="../kategori/banner.php">Banner</a>
           <a href="../kategori/stiker.php">Print Stiker</a>
           <a href="../kategori/kartunama.php">Kartu Nama</a>
+          <a href="../kategori/printa3+.php">Print A3+</a>
+          <a href="../kategori/idcard.php">ID Card</a>
+          <a href="../kategori/plakat.php">Plakat</a>
+          <a href="../kategori/pinmug.php">pinmug</a>
+          <a href="../kategori/stempel.php">Stempel</a>
         </div>
       </div>
       <a href="../tentang-kami.php">Tentang Kami</a>
@@ -172,7 +180,11 @@ if (isset($_POST['shopping-cart'])) {
           <p class="deskripsi">
             <?= $row['deskripsi'] ?>
           </p>
+          <!-- Button Back -->
           <div class="button">
+            <a href="javascript:history.back()" class="btn-back" id="back-button">
+              <i data-feather="arrow-left"></i> Back
+            </a>
             <form method="POST" action="">
               <input type="hidden" name="id_produk" value="<?= $row['id'] ?>">
               <input type="hidden" name="kategori" value="<?= $row['kategori'] ?>">
@@ -187,7 +199,10 @@ if (isset($_POST['shopping-cart'])) {
               <button type="submit" class="btn-beli">Beli Sekarang</button>
             </form>
           </div>
+
         </div>
+
+      </div>
       </div>
     <?php endwhile; ?>
   </section>
@@ -310,6 +325,49 @@ if (isset($_POST['shopping-cart'])) {
     });
 
   </script>
+
+
+  <style>
+    /* Tombol Umum */
+    button,
+    .btn-back {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      border: none;
+      border-radius: 5px;
+      padding: 0.8rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button i,
+    .btn-back i {
+      margin-right: 0.5rem;
+      font-size: 1rem;
+    }
+
+    /* Tombol Back */
+    #back-button {
+      background-color: #e0e0e0;
+      color: #333;
+      border: 1px solid #bbb;
+    }
+
+    #back-button:hover {
+      background-color: #d6d6d6;
+      color: #000;
+    }
+
+
+    @media (max-width: 768px) {
+      #back-button {
+        margin-top: 2%;
+      }
+    }
+  </style>
 </body>
 
 </html>

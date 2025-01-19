@@ -58,7 +58,7 @@ include("../php/config.php");
                                     echo "<div class='message-error'>
                                 <p>Maaf, ukuran file max-2MB.</p>
                               </div><br>";
-                                    echo "<a href='index.php?type=produk'><button class='btn-kembali'>Kembali</button></a>";
+                                    echo "<a href='index.php?type=produk&category=kartu-nama'><button class='btn-kembali'>Kembali</button></a>";
                                 } else {
                                     // Hanya izinkan format file tertentu
                                     if (in_array($imageFileType, ['jpg', 'jpeg', 'png'])) {
@@ -74,31 +74,31 @@ include("../php/config.php");
                                                 echo "<div class='message-sukses'>
                                             <p>Kartu Nama Berhasil Ditambah!</p>
                                           </div><br>";
-                                                echo "<a href='index.php?type=produk'><button class='btn-kembali'>Kembali</button></a>";
+                                                echo "<a href='index.php?type=produk&category=kartu-nama'><button class='btn-kembali'>Kembali</button></a>";
                                             } else {
                                                 echo "<div class='message-error'>
                                             <p>Maaf, terjadi kesalahan saat memasukkan ke database!</p>
                                           </div><br>";
-                                                echo "<a href='index.php?type=produk'><button class='btn-kembali'>Kembali</button></a>";
+                                                echo "<a href='index.php?type=produk&category=kartu-nama'><button class='btn-kembali'>Kembali</button></a>";
                                             }
                                         } else {
                                             echo "<div class='message-error'>
                                         <p>Maaf, terjadi kesalahan saat mengupload file!</p>
                                       </div><br>";
-                                            echo "<a href='index.php?type=produk'><button class='btn-kembali'>Kembali</button></a>";
+                                            echo "<a href='index.php?type=produk&category=kartu-nama'><button class='btn-kembali'>Kembali</button></a>";
                                         }
                                     } else {
                                         echo "<div class='message-error'>
                                     <p>Maaf, hanya file JPG, JPEG, & PNG yang diperbolehkan!</p>
                                   </div><br>";
-                                        echo "<a href='index.php?type=produk'><button class='btn-kembali'>Kembali</button></a>";
+                                        echo "<a href='index.php?type=produk&category=kartu-nama'><button class='btn-kembali'>Kembali</button></a>";
                                     }
                                 }
                             } else {
                                 echo "<div class='message-error'>
                             <p>File bukan gambar!</p>
                           </div><br>";
-                                echo "<a href='index.php?type=produk'><button class='btn-kembali'>Kembali</button></a>";
+                                echo "<a href='index.php?type=produk&category=kartu-nama'><button class='btn-kembali'>Kembali</button></a>";
                             }
                         }
                     } else {
@@ -143,8 +143,8 @@ include("../php/config.php");
                             </div>
                             <div class="button-submit">
                                 <input type="submit" class="btn-tambah" name="submit" value="Tambah" />
-                                <a href="index.php?type=produk" class="btn-kembali"><button type="button"
-                                        class="btn-kembali-isi">Kembali</button></a>
+                                <a href="index.php?type=produk&category=kartu-nama" class="btn-kembali"><button
+                                        type="button" class="btn-kembali-isi">Kembali</button></a>
                             </div>
                         </form>
                     <?php } ?>

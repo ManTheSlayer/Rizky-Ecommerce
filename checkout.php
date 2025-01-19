@@ -76,10 +76,44 @@ if (isset($_POST['submit'])) {
     exit();
   }
 
-  // Query untuk insert data ke tabel proses
-  $insert_query = "INSERT INTO pesanan (id_user, namaLengkap, phone, alamat, ekspedisi, final_total, nama_produk, bukti, total_ongkir, grand_total, tanggal, status_pesanan) 
-                     VALUES('$id_user', '$namaLengkap', '$phone', '$alamat_lengkap', '$ekspedisi', '$final_total', '$total_produk', '$bukti', '$total_ongkir', '$grand_total', '$tanggal_sekarang', '$status')";
+  $desain = "";
+  // Simpan file bukti transfer jika ada yang diunggah
+  if ($_FILES['desain']['size'] > 0) {
+    $file_name = $_FILES['desain']['name'];
+    $file_size = $_FILES['desain']['size'];
+    $file_tmp = $_FILES['desain']['tmp_name'];
+    $file_type = $_FILES['desain']['type'];
 
+    // Memeriksa tipe file yang diizinkan (misalnya hanya gambar atau dokumen tertentu)
+    $allowed_types = array('image/jpeg', 'image/png', 'application/pdf');
+
+    // Memeriksa ukuran file
+    if ($file_size > 2000000) {
+      echo "<script>alert('Checkout gagal! Ukuran file terlalu besar. Maksimal 2MB.'); window.location.href = 'keranjang.php';</script>";
+      exit();
+    } elseif (!in_array($file_type, $allowed_types)) {
+      echo "<script>alert('Checkout gagal! Tipe file tidak didukung. Hanya file JPG, PNG atau PDF yang diizinkan.'); window.location.href = 'keranjang.php';</script>";
+      exit();
+    } else {
+      // Simpan file ke direktori tujuan
+      $upload_dir_desain = "admin/asset/desain/";
+      $file_path = $upload_dir_desain . $file_name;
+
+      if (move_uploaded_file($file_tmp, $file_path)) {
+        $desain = $file_name; // Menetapkan nama file bukti untuk dimasukkan ke dalam database
+      } else {
+        echo "<script>alert('Checkout gagal! Gagal mengunggah file bukti. Silakan coba lagi.'); window.location.href = 'keranjang.php';</script>";
+        exit();
+      }
+    }
+  }
+
+  $catatan = mysqli_real_escape_string($con, $_POST['catatan']); // Mengambil catatan dari form
+
+  // Kemudian, Anda bisa menyimpan catatan ini ke dalam database jika diperlukan
+// Misalnya, tambahkan ke query insert:
+  $insert_query = "INSERT INTO pesanan (id_user, namaLengkap, phone, alamat, ekspedisi, final_total, nama_produk, bukti, total_ongkir, grand_total, tanggal, status_pesanan, desain, catatan) 
+                  VALUES('$id_user', '$namaLengkap', '$phone', '$alamat_lengkap', '$ekspedisi', '$final_total', '$total_produk', '$bukti', '$total_ongkir', '$grand_total', '$tanggal_sekarang', '$status', '$desain', '$catatan')";
   // Jika proses insert berhasil
   if (mysqli_query($con, $insert_query)) {
     // Mengambil ID produk dari URL (Beli Sekarang)
@@ -199,11 +233,17 @@ if ($result = mysqli_fetch_assoc($query)) {
     <div class="navbar-nav">
       <a href="index.php">Home</a>
       <div class="dropdown">
-        <a href="#" class="kategori-nav">Kategori</a>
+        <a href="kategori/katalog.php" class="kategori-nav">Kategori</a>
         <div class="dropdown-menu">
-          <a href="kategori/case.php">Case</a>
-          <a href="kategori/charger.php">Charger</a>
-          <a href="kategori/aksesoris.php">Aksesoris</a>
+          <a href="kategori/banner.php">Banner</a>
+          <a href="kategori/stiker.php">Print Stiker</a>
+          <a href="kategori/kartunama.php">Kartu Nama</a>
+          <a href="kategori/printa3+.php">Print A3+</a>
+          <a href="kategori/idcard.php">ID Card</a>
+          <a href="kategori/plakat.php">Plakat</a>
+          <a href="kategori/pinmug.php">pinmug</a>
+          <a href="kategori/stempel.php">Stempel</a>
+
         </div>
       </div>
       <a href="tentang-kami.php">Tentang Kami</a>
@@ -390,9 +430,9 @@ if ($result = mysqli_fetch_assoc($query)) {
         <div class="jelajah">
           <h4>Jelajahi Kami</h4>
           <div class="tentang">
-            <a href="kategori/case.php"><i data-feather="chevron-right" width="16" height="16"></i> Case</a>
-            <a href="kategori/charger.php"><i data-feather="chevron-right" width="16" height="16"></i> Charger</a>
-            <a href="kategori/aksesoris.php"><i data-feather="chevron-right" width="16" height="16"></i> Aksesoris</a>
+            <a href="kategori/banner.php"><i data-feather="chevron-right" width="16" height="16"></i> Banner</a>
+            <a href="kategori/stiker.php"><i data-feather="chevron-right" width="16" height="16"></i> Print Stiker</a>
+            <a href="kategori/kartunama.php"><i data-feather="chevron-right" width="16" height="16"></i> Kartu Nama</a>
             <a href="tentang-kami.php"><i data-feather="chevron-right" width="16" height="16"></i> Tentang Kami</a>
           </div>
         </div>
@@ -411,7 +451,7 @@ if ($result = mysqli_fetch_assoc($query)) {
       </div>
     </div>
     <div class="credit">
-      <p><a href="">Gadget<span>AR</span></a> | &copy; 2024.</p>
+      <p><a href="">Lurida<span>Innovations</span></a> | &copy; 2024.</p>
     </div>
   </footer>
 
@@ -492,14 +532,28 @@ if ($result = mysqli_fetch_assoc($query)) {
             <input type="hidden" name="tipe">
             <input type="hidden" name="kodepos">
             <input type="hidden" name="ekspedisi">
-            <label for="bukti">Upload bukti transfer</label>
-            <input type="file" name="bukti" required />
-            <p>*Harap transfer sesuai dengan nominal transfer di atas. Terimakasih</p>
-          </div>
-          <div class="btn">
-            <button type="button" class="btn-back" id="btn-back">Kembali</button>
-            <input type="submit" class="btn-konfirmasi" name="submit" value="Konfirmasi" required />
-          </div>
+            <div class="upload-section">
+              <!-- input bukti -->
+              <label for="bukti">Upload Bukti Transfer</label>
+              <input type="file" name="bukti" required class="file-input" />
+              <p class="note">*Harap transfer sesuai dengan nominal transfer di atas. Terimakasih</p>
+
+              <!-- input desain -->
+              <label for="desain">Upload File Desain (Jpg/Png/Pdf) Maks 2Mb</label>
+              <input type="file" name="desain" id="desain" accept=".jpg, .jpeg, .png, .pdf" class="file-input" />
+              <p class="note">*Mohon Upload File dengan batas ukuran maksimal 2 MB</p>
+              <p id="error-message" class="error-message">File tidak valid! Hanya JPG, PNG, atau PDF dengan ukuran
+                maksimum 2 MB yang diperbolehkan.</p>
+
+              <!-- Catatan untuk penjual -->
+              <label for="catatan">Catatan untuk Penjual (Opsional)</label>
+              <textarea name="catatan" id="catatan" rows="4" placeholder="Tulis catatan untuk penjual di sini..."
+                class="textarea"></textarea>
+            </div>
+            <div class="btn">
+              <button type="button" class="btn-back" id="btn-back">Kembali</button>
+              <input type="submit" class="btn-konfirmasi" name="submit" value="Konfirmasi" required />
+            </div>
         </form>
       </div>
     </div>
@@ -676,6 +730,76 @@ if ($result = mysqli_fetch_assoc($query)) {
 
   <!-- javaScript -->
   <script src="script.js"></script>
+
+  <style>
+    .upload-section {
+      background-color: #f9f9f9;
+      /* Warna latar belakang */
+      border: 1px solid #ddd;
+      /* Garis batas */
+      border-radius: 8px;
+      /* Sudut melengkung */
+      padding: 20px;
+      /* Ruang di dalam */
+      margin: 20px 0;
+      /* Margin atas dan bawah */
+    }
+
+    .upload-section label {
+      font-weight: bold;
+      /* Tebal */
+      margin-bottom: 5px;
+      /* Jarak bawah */
+      display: block;
+      /* Membuat label menjadi block */
+    }
+
+    .file-input {
+      width: 100%;
+      /* Lebar penuh */
+      padding: 10px;
+      /* Ruang dalam */
+      border: 1px solid #ccc;
+      /* Garis batas */
+      border-radius: 4px;
+      /* Sudut melengkung */
+      margin-bottom: 15px;
+      /* Jarak bawah */
+      font-size: 14px;
+      /* Ukuran font */
+    }
+
+    .note {
+      font-size: 12px;
+      /* Ukuran font lebih kecil */
+      color: #666;
+      /* Warna teks abu-abu */
+      margin-bottom: 15px;
+      /* Jarak bawah */
+    }
+
+    .error-message {
+      color: red;
+      /* Warna merah untuk pesan error */
+      display: none;
+      /* Tersembunyi secara default */
+      margin-bottom: 15px;
+      /* Jarak bawah */
+    }
+
+    .textarea {
+      width: 100%;
+      /* Lebar penuh */
+      padding: 10px;
+      /* Ruang dalam */
+      border: 1px solid #ccc;
+      /* Garis batas */
+      border-radius: 4px;
+      /* Sudut melengkung */
+      resize: vertical;
+      /* Hanya bisa diubah ukuran vertikal */
+    }
+  </style>
 </body>
 
 </html>

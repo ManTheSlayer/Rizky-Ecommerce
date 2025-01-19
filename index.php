@@ -55,12 +55,19 @@ if (isset($_SESSION['id_user'])) {
 
     <div class="navbar-nav">
       <a href="#">Beranda</a>
+
       <div class="dropdown">
-        <a href="#" class="kategori-nav">Kategori</a>
+        <a href="kategori/katalog.php" class="kategori-nav">Kategori</a>
         <div class="dropdown-menu">
           <a href="kategori/banner.php">Banner</a>
           <a href="kategori/stiker.php">Print Stiker</a>
           <a href="kategori/kartunama.php">Kartu Nama</a>
+          <a href="kategori/printa3+.php">Print A3+</a>
+          <a href="kategori/idcard.php">ID Card</a>
+          <a href="kategori/plakat.php">Plakat</a>
+          <a href="kategori/pinmug.php">pinmug</a>
+          <a href="kategori/stempel.php">Stempel</a>
+
         </div>
       </div>
       <a href="tentang-kami.php">Tentang Kami</a>
@@ -146,6 +153,7 @@ if (isset($_SESSION['id_user'])) {
         </div>
       </div>
     </div>
+
   </section>
 
   <!-- WhatsApp Floating Button -->
@@ -260,6 +268,40 @@ if (isset($_SESSION['id_user'])) {
       checkSearchButton();
     });
   </script>
+
+  <style>
+    /* Iklan Berjalan */
+    .iklan-berjalan {
+      width: 100%;
+      background: linear-gradient(90deg, #ff758c, #ff7eb3);
+      color: #fff;
+      padding: 10px 0;
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .iklan-berjalan p {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+      white-space: nowrap;
+      animation: scroll-iklan 10s linear infinite;
+    }
+
+    @keyframes scroll-iklan {
+      0% {
+        transform: translateX(100%);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
 </body>
 
 </html>

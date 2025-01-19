@@ -73,7 +73,7 @@ if (isset($_POST['shopping-cart'])) {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Produk - Stiker</title>
+    <title>Produk - Kartu Nama</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -95,11 +95,16 @@ if (isset($_POST['shopping-cart'])) {
         <div class="navbar-nav">
             <a href="../index.php">Beranda</a>
             <div class="dropdown">
-                <a href="#">Kategori</a>
+                <a href="katalog.php">Kategori</a>
                 <div class="dropdown-menu">
                     <a href="banner.php">Banner</a>
                     <a href="stiker.php">Print Stiker</a>
-                    <a href="#">Kartu Nama</a>
+                    <a href="kartunama.php">Kartu Nama</a>
+                    <a href="printa3+.php">Print A3+</a>
+                    <a href="idcard.php">ID Card</a>
+                    <a href="plakat.php">Plakat</a>
+                    <a href="pinmug.php">pinmug</a>
+                    <a href="stempel.php">Stempel</a>
                 </div>
             </div>
             <a href="../tentang-kami.php">Tentang Kami</a>
@@ -132,7 +137,7 @@ if (isset($_POST['shopping-cart'])) {
     <!-- isi case -->
     <section class="produk">
         <div class="container">
-            <h1>PRODUK</h1>
+            <h1>K A R T U - N A M A</h1>
             <h1>Art paper - Art carton - Linen </h1>
         </div>
         <div class="title">
@@ -153,7 +158,7 @@ if (isset($_POST['shopping-cart'])) {
                         <?= number_format($row['harga']) ?>
                     </p>
                     <form class="add-to-cart-form" method="post" action="">
-                        <a href="../detail/kartunama-detail.php?id=<?= $row['id'] ?>" id="detail"><i
+                        <a href="../detail/detail-produk.php?id=<?= $row['id'] ?>" id="detail"><i
                                 data-feather="eye"></i></a>
                         <input type="hidden" name="id_produk" value="<?= $row['id'] ?>">
                         <input type="hidden" name="kategori" value="<?= $row['kategori'] ?>">

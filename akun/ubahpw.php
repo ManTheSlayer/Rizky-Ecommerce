@@ -54,11 +54,16 @@ if (!isset($_SESSION['id_user'])) {
     <div class="navbar-nav">
       <a href="../index.php">Beranda</a>
       <div class="dropdown">
-        <a href="#">Kategori</a>
+        <a href="../kategori/katalog.php">Kategori</a>
         <div class="dropdown-menu">
           <a href="../kategori/banner.php">Banner</a>
           <a href="../kategori/stiker.php">Print Stiker</a>
           <a href="../kategori/kartunama.php">Kartu Nama</a>
+          <a href="../kategori/printa3+.php">Print A3+</a>
+          <a href="../kategori/idcard.php">ID Card</a>
+          <a href="../kategori/plakat.php">Plakat</a>
+          <a href="../kategori/pinmug.php">pinmug</a>
+          <a href="../kategori/stempel.php">Stempel</a>
         </div>
       </div>
       <a href="#" class="nav-akun">Akun</a>
@@ -207,11 +212,10 @@ if (!isset($_SESSION['id_user'])) {
         <div class="jelajah">
           <h4>Jelajahi Kami</h4>
           <div class="tentang">
-            <a href="../kategori/case.php"><i data-feather="chevron-right" width="16" height="16"></i> Soft Case</a>
-            <a href="../kategori/charger.php"><i data-feather="chevron-right" width="16" height="16"></i> Charger</a>
-            <a href="../kategori/aksesoris.php"><i data-feather="chevron-right" width="16" height="16"></i>
-              Aksesoris</a>
-            <a href="../tentang-kami.php"><i data-feather="chevron-right" width="16" height="16"></i> Tentang Kami</a>
+            <a href="kategori/banner.php"><i data-feather="chevron-right" width="16" height="16"></i> Banner</a>
+            <a href="kategori/stiker.php"><i data-feather="chevron-right" width="16" height="16"></i> Print Stiker</a>
+            <a href="kategori/kartunama.php"><i data-feather="chevron-right" width="16" height="16"></i> Kartu Nama</a>
+            <a href="tentang-kami.php"><i data-feather="chevron-right" width="16" height="16"></i> Tentang Kami</a>
           </div>
         </div>
         <div class="social-media">

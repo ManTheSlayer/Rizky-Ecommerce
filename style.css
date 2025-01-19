@@ -1509,7 +1509,7 @@ body {
 /* ==================== Detail produk page ====================== */
 .detail-produk {
     display: flex;
-    padding: 10rem 7%;
+    padding: 7rem 5%;
 }
 
 .detail-produk .container {
@@ -1518,7 +1518,8 @@ body {
     border-radius: 0.5rem;
     box-shadow: 0 0 128px 0 rgba(1, 1, 1, 0.2), 0 32px 64px -48px rgba(1, 1, 1, 0.2);
     padding: 2rem;
-    width: 100%;
+    margin-left: 5%;
+    width: 90%;
 }
 .detail-produk .container .detail-produk-img {
     overflow: hidden;
@@ -1599,38 +1600,87 @@ body {
 .detail-produk .container .detail-produk-title .button {
     display: flex;
 }
+/* Container Tombol */
+.detail-produk .button {
+    display: flex;
+    flex-wrap: wrap; /* Agar tombol tetap rapih jika ruang sempit */
+    gap: 1rem; /* Jarak antar tombol */
+    justify-content: flex-start; /* Atur ke kiri, bisa diganti center untuk rata tengah */
+    align-items: center;
+    margin-top: 1.5rem; /* Jarak antara tombol dan elemen lainnya */
+}
 
-.detail-produk .container .detail-produk-title .button .btn-keranjang {
-    margin-right: 1rem;
-    height: 2rem;
-    width: 10rem;
-    font-size: 1rem;
+/* Tombol Umum */
+button,
+.btn-back {
+    font-family: "Poppins", sans-serif;
     font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+}
+
+/* Tombol Back */
+.btn-back {
+    background-color: #e0e0e0;
+    color: #333;
+    border: 1px solid #bbb;
+}
+
+.btn-back:hover {
+    background-color: #d6d6d6;
     color: #000;
-    background: #028f6c2c;
-    border: 2px solid var(--primary);
-    border-radius: 0.3rem;
-    cursor: pointer;
 }
 
-.detail-produk .container .detail-produk-title .button .btn-keranjang:hover {
-    background: #eee;
+/* Tombol Keranjang */
+.btn-keranjang {
+    background: linear-gradient(135deg, #02a97a, #028f6c);
+    color: white;
+    border: 1px solid #028f6c;
 }
 
-.detail-produk .container .detail-produk-title .button .btn-beli {
-    margin-right: 1rem;
-    height: 2rem;
-    width: 10rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-    background: var(--primary);
-    border-radius: 0.3rem;
-    cursor: pointer;
+.btn-keranjang:hover {
+    background: linear-gradient(135deg, #028f6c, #026a4f);
+    transform: scale(1.05);
 }
 
-.detail-produk .container .detail-produk-title .button .btn-beli:hover {
-    opacity: 0.8;
+/* Tombol Beli Sekarang */
+.btn-beli {
+    background: linear-gradient(135deg, #ff7a00, #ff5000);
+    color: white;
+    border: 1px solid #ff5000;
+}
+
+.btn-beli:hover {
+    background: linear-gradient(135deg, #ff5000, #cc3e00);
+    transform: scale(1.05);
+}
+
+/* Hover Animasi */
+button:hover,
+.btn-back:hover {
+    transform: translateY(-2px);
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .detail-produk .button {
+        flex-direction: column; /* Susun vertikal jika layar kecil */
+        align-items: stretch; /* Tombol akan penuh lebarnya */
+    }
+
+    button,
+    .btn-back {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+    }
 }
 
 /* ================= keranjang page ================== */

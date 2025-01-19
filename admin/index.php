@@ -21,7 +21,6 @@ if (!isset($_SESSION['id_admin'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
         rel="stylesheet" />
-
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
 
@@ -34,6 +33,7 @@ if (!isset($_SESSION['id_admin'])) {
         <?php include "../style.css" ?>
     </style>
     <link rel="stylesheet" href="../style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -57,8 +57,8 @@ if (!isset($_SESSION['id_admin'])) {
                     case 'kartu-nama':
                         include 'kartunama.php';
                         break;
-                    case 'print-a3+':
-                        include 'printa3+.php';
+                    case 'print-a3':
+                        include 'printa3.php';
                         break;
                     case 'id-card':
                         include 'idcard.php';
@@ -68,9 +68,6 @@ if (!isset($_SESSION['id_admin'])) {
                         break;
                     case 'pin-mug':
                         include 'pinmug.php';
-                        break;
-                    case 'kaos':
-                        include 'kaos.php';
                         break;
                     case 'stempel':
                         include 'stempel.php';
@@ -130,7 +127,7 @@ if (!isset($_SESSION['id_admin'])) {
                         <li><a href="index.php?type=produk&category=kartu-nama">
                                 <span class="links_name">Kartu Nama</span>
                             </a></li>
-                        <li><a href="index.php?type=produk&category=print-a3+">
+                        <li><a href="index.php?type=produk&category=print-a3">
                                 <span class="links_name">Print A3+</span>
                             </a></li>
                         <li><a href="index.php?type=produk&category=id-card">
@@ -139,11 +136,8 @@ if (!isset($_SESSION['id_admin'])) {
                         <li><a href="index.php?type=produk&category=plakat">
                                 <span class="links_name">Plakat</span>
                             </a></li>
-                        <li><a href="index.php?type=produk&category=pinmug">
+                        <li><a href="index.php?type=produk&category=pin-mug">
                                 <span class="links_name">Pin & Mug</span>
-                            </a></li>
-                        <li><a href="index.php?type=produk&category=kaos">
-                                <span class="links_name">Kaos</span>
                             </a></li>
                         <li><a href="index.php?type=produk&category=stempel">
                                 <span class="links_name">Stempel</span>
@@ -156,12 +150,12 @@ if (!isset($_SESSION['id_admin'])) {
                         <span class="links_name">Pesanan</span>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="index.php?type=ekspedisi">
                         <i class="bx bx-package"></i>
                         <span class="links_name">Jasa Ekspedisi</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="profile">
                     <?php
                     $id = $_SESSION['id_admin'];
